@@ -110,3 +110,13 @@ body {
 
 /* Selection */
 ::selection { background: var(--color-muce); color: white; }
+
+/* Hide scrollbar on horizontal carousels (mobile cards) — Tailwind v4 @utility */
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

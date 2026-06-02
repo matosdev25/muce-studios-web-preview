@@ -61,7 +61,17 @@ export function CaseStudies() {
           </p>
         </motion.div>
 
-        <div className="mt-14 grid md:grid-cols-3 gap-5">
+        {/* Mobile: carrusel horizontal. Desktop: grid de 3. */}
+        <div
+          className="
+            mt-14 flex md:grid md:grid-cols-3 gap-5
+            overflow-x-auto md:overflow-visible
+            snap-x snap-mandatory md:snap-none
+            -mx-6 md:mx-0 px-6 md:px-0
+            pb-4 md:pb-0
+            scrollbar-hide
+          "
+        >
           {cases.map((c, i) => (
             <CaseCard key={c.id} {...c} index={i} />
           ))}
@@ -90,7 +100,8 @@ function CaseCard({
         ease: [0.22, 1, 0.36, 1],
       }}
       whileHover={{ y: -4 }}
-      className="group relative aspect-[4/5] rounded-2xl overflow-hidden border border-line bg-surface"
+      className="group relative aspect-[4/5] rounded-2xl overflow-hidden border border-line bg-surface
+        snap-center shrink-0 w-[85%] sm:w-[60%] md:w-auto"
     >
       {/* Animated background */}
       <div className="absolute inset-0 bg-gradient-to-br from-muce-deep/40 via-bg to-bg" />

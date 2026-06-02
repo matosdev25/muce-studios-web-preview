@@ -87,7 +87,20 @@ export function Services() {
           </p>
         </motion.div>
 
-        <div className="mt-14 grid md:grid-cols-3 gap-5 items-stretch">
+        {/*
+          Mobile: scroll horizontal con snap (una card a la vez, la siguiente
+          asoma 15% del lado). Desktop: grid de 3 columnas como siempre.
+        */}
+        <div
+          className="
+            mt-14 flex md:grid md:grid-cols-3 gap-5 items-stretch
+            overflow-x-auto md:overflow-visible
+            snap-x snap-mandatory md:snap-none
+            -mx-6 md:mx-0 px-6 md:px-0
+            pb-4 md:pb-0
+            scrollbar-hide
+          "
+        >
           {services.map((s, i) => (
             <ServiceCard key={s.name} {...s} index={i} />
           ))}
@@ -132,7 +145,8 @@ function ServiceCard({
         ease: [0.22, 1, 0.36, 1],
       }}
       whileHover={{ y: -6 }}
-      className={`group relative flex flex-col overflow-hidden rounded-2xl border bg-surface/40 backdrop-blur p-7 transition-colors ${
+      className={`group relative flex flex-col overflow-hidden rounded-2xl border bg-surface/40 backdrop-blur p-7 transition-colors
+        snap-center shrink-0 w-[85%] sm:w-[60%] md:w-auto ${
         highlight
           ? "border-muce/50 shadow-[0_0_0_1px_rgba(231,0,11,0.25)]"
           : "border-line hover:border-line-strong"
