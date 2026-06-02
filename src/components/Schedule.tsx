@@ -37,8 +37,9 @@ export function Schedule() {
     return { cells, label: `${months[month]} ${year}`, today: now.getDate() };
   }, []);
 
-  const formComplete =
-    form.name && form.brand && form.service && form.budget && form.context;
+  const formComplete = Boolean(
+    form.name && form.brand && form.service && form.budget && form.context,
+  );
 
   return (
     <section id="agenda" className="relative py-24 md:py-32 overflow-hidden">
