@@ -1,26 +1,112 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-bg: #050507;
+  --color-bg-soft: #0a0a0d;
+  --color-surface: #111114;
+  --color-surface-2: #18181d;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-line-strong: rgba(255, 255, 255, 0.16);
+  --color-text: #f4f4f5;
+  --color-text-muted: #a1a1aa;
+  --color-text-dim: #71717a;
+  --color-muce: #e7000b;
+  --color-muce-bright: #ff1a1a;
+  --color-muce-deep: #b80009;
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+
+  --shadow-glow: 0 0 60px -10px rgba(231, 0, 11, 0.45);
+  --shadow-card: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
+
+/* Grid texture used as global background pattern */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.bg-noise {
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Radial spotlight used on hero / accent areas */
+.bg-spot {
+  background:
+    radial-gradient(60% 50% at 50% 0%, rgba(231, 0, 11, 0.18), transparent 70%),
+    radial-gradient(80% 60% at 10% 100%, rgba(231, 0, 11, 0.08), transparent 70%);
+}
+
+/* Shimmer used in premium banner */
+@keyframes shimmer {
+  0% { transform: translateX(-120%) skewX(-12deg); }
+  100% { transform: translateX(220%) skewX(-12deg); }
+}
+.shimmer-sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 100%
+  );
+  transform: translateX(-120%) skewX(-12deg);
+  animation: shimmer 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Pulse dot used on REC badge */
+@keyframes recPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.25); }
+}
+.rec-dot { animation: recPulse 1.4s ease-in-out infinite; }
+
+/* Soft floating motion for hero video card */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.float-soft { animation: floatY 6s ease-in-out infinite; }
+
+/* Slow drift for spotlight glow behind hero video */
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.55; }
+  50% { transform: translate(20px, -10px) scale(1.05); opacity: 0.75; }
+}
+.glow-drift { animation: drift 9s ease-in-out infinite; }
+
+/* Underline / accent dot used after period in headlines */
+.dot::after {
+  content: ".";
+  color: var(--color-muce);
+}
+
+/* Custom scrollbar (dark) */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-2);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: #2a2a31; }
+
+/* Selection */
+::selection { background: var(--color-muce); color: white; }
