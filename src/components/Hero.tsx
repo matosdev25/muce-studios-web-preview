@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Play, Clock, CalendarCheck } from "lucide-react";
 import { useRef } from "react";
 
@@ -31,39 +31,40 @@ const headline = [
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 120]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.2]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, shouldReduceMotion ? 0 : 40]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, shouldReduceMotion ? 1 : 0.85]);
 
   return (
     <section
       ref={ref}
       id="top"
-      className="relative pt-32 md:pt-40 pb-24 overflow-hidden bg-spot"
+      className="relative pt-24 md:pt-40 pb-14 md:pb-24 overflow-hidden bg-spot"
     >
-      <div className="absolute inset-0 bg-grid opacity-60" aria-hidden />
-      <div className="absolute inset-0 bg-noise opacity-50" aria-hidden />
+      <div className="absolute inset-0 bg-grid opacity-35 md:opacity-60" aria-hidden />
+      <div className="absolute inset-0 bg-noise opacity-25 md:opacity-50" aria-hidden />
 
       <motion.div
         style={{ y, opacity }}
-        className="relative mx-auto max-w-6xl px-6 grid md:grid-cols-2 gap-12 items-center"
+        className="relative mx-auto max-w-6xl px-4 md:px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center"
       >
         {/* Text column */}
-        <div>
+        <div className="min-w-0">
           <motion.span
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="inline-flex items-center gap-2 rounded-full border border-line bg-surface/60 backdrop-blur px-3 py-1 text-xs uppercase tracking-[0.2em] text-text-muted"
+            className="inline-flex items-center gap-2 rounded-full border border-line bg-surface/60 px-3 py-1 text-[0.68rem] uppercase tracking-[0.14em] text-text-muted backdrop-blur-sm md:text-xs md:tracking-[0.2em]"
           >
             <span className="size-1.5 rounded-full bg-muce rec-dot" />
             Estudio de contenido audiovisual
           </motion.span>
 
-          <h1 className="mt-6 font-display font-bold leading-[1.02] tracking-tight text-5xl md:text-6xl lg:text-[4.2rem]">
+          <h1 className="mt-5 md:mt-6 max-w-full font-display font-bold leading-[1.03] tracking-tight text-[2.1rem] min-[390px]:text-[2.4rem] sm:text-5xl md:text-6xl lg:text-[4.2rem]">
             {headline.map((w, i) => (
               <motion.span
                 key={i}
@@ -74,7 +75,7 @@ export function Hero() {
                   ease: [0.22, 1, 0.36, 1],
                   duration: 0.7,
                 }}
-                className={`inline-block mr-[0.22em] ${w.accent ? "text-muce" : ""}`}
+                className={`block sm:inline-block sm:mr-[0.22em] ${w.accent ? "text-muce" : ""}`}
               >
                 {w.text}
               </motion.span>
@@ -84,8 +85,8 @@ export function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9 }}
-            className="mt-6 max-w-md text-text-muted text-lg leading-relaxed"
+            transition={{ delay: 0.35 }}
+            className="mt-5 md:mt-6 max-w-md text-text-muted text-base md:text-lg leading-relaxed"
           >
             Producción con dirección, estrategia con criterio. Cada pieza
             pensada para mover tu marca, no solo para llenar feed.
@@ -94,12 +95,12 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.05 }}
-            className="mt-8 flex flex-wrap items-center gap-4"
+            transition={{ delay: 0.45 }}
+            className="mt-6 md:mt-8 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 md:gap-4"
           >
             <a
               href="#agenda"
-              className="group relative inline-flex items-center gap-2 rounded-full bg-muce px-6 py-3.5 font-medium text-white shadow-glow hover:bg-muce-bright transition-colors"
+              className="group relative inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-muce px-6 py-3 font-medium text-white shadow-glow hover:bg-muce-bright transition-colors sm:w-auto"
             >
               Agenda tu reunión
               <CalendarCheck className="size-4" />
@@ -107,7 +108,7 @@ export function Hero() {
             </a>
             <a
               href="#servicios"
-              className="text-sm text-text-muted hover:text-text transition-colors underline-offset-4 hover:underline"
+              className="text-center sm:text-left text-sm text-text-muted hover:text-text transition-colors underline-offset-4 hover:underline"
             >
               Ver los tres servicios →
             </a>
@@ -116,8 +117,8 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.25 }}
-            className="mt-6 flex items-center gap-2 text-xs text-text-dim"
+            transition={{ delay: 0.55 }}
+            className="mt-5 md:mt-6 flex items-center gap-2 text-xs text-text-dim"
           >
             <Clock className="size-3.5" />
             30 minutos · Sin compromiso
@@ -129,15 +130,15 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.92, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="relative aspect-[4/3] md:aspect-[5/4]"
+          className="relative aspect-[16/10] md:aspect-[5/4]"
         >
           {/* Drifting red glow behind card */}
           <div
             aria-hidden
-            className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-muce/40 via-muce-deep/20 to-transparent blur-3xl glow-drift"
+            className="absolute -inset-3 md:-inset-6 rounded-[2rem] bg-gradient-to-br from-muce/25 md:from-muce/40 via-muce-deep/15 md:via-muce-deep/20 to-transparent blur-2xl md:blur-3xl glow-drift"
           />
 
-          <div className="relative h-full rounded-2xl overflow-hidden border border-line-strong bg-surface float-soft">
+          <div className="relative h-full rounded-xl md:rounded-2xl overflow-hidden border border-line-strong bg-surface float-soft">
             {/* "Recording" surface */}
             <div className="absolute inset-0 bg-gradient-to-br from-muce-deep/30 via-bg-soft to-black" />
             <div className="absolute inset-0 bg-grid opacity-20" />
@@ -145,12 +146,12 @@ export function Hero() {
             {/* Camera lens illustration */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="relative">
-                <div className="size-44 md:size-56 rounded-full border border-line-strong bg-gradient-to-br from-black to-bg-soft shadow-card" />
+                <div className="size-32 sm:size-40 md:size-56 rounded-full border border-line-strong bg-gradient-to-br from-black to-bg-soft shadow-card" />
                 <div className="absolute inset-4 rounded-full border border-line-strong bg-gradient-to-br from-bg-soft to-black" />
                 <div className="absolute inset-10 rounded-full bg-black" />
                 <div className="absolute top-6 left-10 size-3 rounded-full bg-white/40 blur-[2px]" />
                 {/* Second lens */}
-                <div className="absolute -bottom-4 -right-4 size-24 rounded-full border border-line bg-gradient-to-br from-bg-soft to-black/70" />
+                <div className="absolute -bottom-3 -right-3 size-16 sm:size-20 md:-bottom-4 md:-right-4 md:size-24 rounded-full border border-line bg-gradient-to-br from-bg-soft to-black/70" />
               </div>
             </div>
 

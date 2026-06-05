@@ -31,6 +31,7 @@ body {
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
 }
 
 /* Grid texture used as global background pattern */
@@ -92,6 +93,37 @@ body {
   50% { transform: translate(20px, -10px) scale(1.05); opacity: 0.75; }
 }
 .glow-drift { animation: drift 9s ease-in-out infinite; }
+
+@media (max-width: 767px) {
+  .shimmer-sweep::after {
+    animation-duration: 7s;
+    opacity: 0.55;
+  }
+
+  .float-soft,
+  .glow-drift {
+    animation: none;
+  }
+
+  .bg-grid {
+    background-size: 40px 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}
 
 /* Underline / accent dot used after period in headlines */
 .dot::after {

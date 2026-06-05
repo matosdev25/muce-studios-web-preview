@@ -37,39 +37,33 @@ const cases: Case[] = [
 
 export function CaseStudies() {
   return (
-    <section id="casos" className="relative py-24 md:py-32">
-      <div className="mx-auto max-w-6xl px-6">
+    <section id="casos" className="relative py-16 md:py-32">
+      <div className="mx-auto max-w-6xl px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="flex items-end justify-between gap-6 flex-wrap"
+          className="flex items-end justify-between gap-4 md:gap-6 flex-wrap"
         >
           <div>
-            <span className="text-muce text-xs uppercase tracking-[0.28em]">
+            <span className="text-muce text-xs uppercase tracking-[0.2em] md:tracking-[0.28em]">
               Casos
             </span>
-            <h2 className="mt-3 font-display font-bold text-4xl md:text-5xl tracking-tight">
+            <h2 className="mt-3 font-display font-bold text-3xl md:text-5xl tracking-tight">
               Trabajo que sostiene marca
               <span className="text-muce">.</span>
             </h2>
           </div>
-          <p className="text-text-muted max-w-sm">
+          <p className="text-sm md:text-base text-text-muted max-w-sm">
             Cada proyecto se construye con dirección y objetivo — no para
             llenar feed.
           </p>
         </motion.div>
 
-        {/* Mobile: carrusel horizontal. Desktop: grid de 3. */}
         <div
           className="
-            mt-14 flex md:grid md:grid-cols-3 gap-5
-            overflow-x-auto md:overflow-visible
-            snap-x snap-mandatory md:snap-none
-            -mx-6 md:mx-0 px-6 md:px-0
-            pb-4 md:pb-0
-            scrollbar-hide
+            mt-9 md:mt-14 grid grid-cols-1 md:grid-cols-3 gap-5
           "
         >
           {cases.map((c, i) => (
@@ -100,12 +94,12 @@ function CaseCard({
         ease: [0.22, 1, 0.36, 1],
       }}
       whileHover={{ y: -4 }}
-      className="group relative aspect-[4/5] rounded-2xl overflow-hidden border border-line bg-surface
-        snap-center shrink-0 w-[85%] sm:w-[60%] md:w-auto"
+      className="group relative aspect-[4/5] rounded-xl md:rounded-2xl overflow-hidden border border-line bg-surface
+        w-full"
     >
       {/* Animated background */}
       <div className="absolute inset-0 bg-gradient-to-br from-muce-deep/40 via-bg to-bg" />
-      <div className="absolute inset-0 bg-grid opacity-30" />
+      <div className="absolute inset-0 bg-grid opacity-20 md:opacity-30" />
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(70%_50%_at_50%_50%,rgba(231,0,11,0.28),transparent_70%)]" />
 
       {/* Icon as visual */}
@@ -114,11 +108,11 @@ function CaseCard({
         transition={{ type: "spring", stiffness: 200, damping: 20 }}
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-muce/40 group-hover:text-muce/70 transition-colors"
       >
-        <Icon className="size-32 md:size-40" />
+        <Icon className="size-28 md:size-40" />
       </motion.div>
 
       {/* Top meta */}
-      <div className="absolute top-5 inset-x-5 flex items-center justify-between text-xs">
+      <div className="absolute top-4 md:top-5 inset-x-4 md:inset-x-5 flex items-center justify-between text-xs">
         <span className="text-text-dim font-mono">Caso · {id}</span>
         <span className="rounded-full border border-line bg-bg/60 backdrop-blur px-2 py-0.5 text-text-muted">
           {category}
@@ -126,8 +120,8 @@ function CaseCard({
       </div>
 
       {/* Bottom content */}
-      <div className="absolute bottom-0 inset-x-0 p-5 bg-gradient-to-t from-black via-black/70 to-transparent">
-        <h3 className="font-display font-semibold text-2xl tracking-tight">
+      <div className="absolute bottom-0 inset-x-0 p-4 md:p-5 bg-gradient-to-t from-black via-black/70 to-transparent">
+        <h3 className="font-display font-semibold text-xl md:text-2xl tracking-tight">
           {title}
         </h3>
         <p className="mt-2 text-sm text-text-muted leading-relaxed">

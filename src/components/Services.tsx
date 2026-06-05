@@ -65,8 +65,8 @@ const services: Service[] = [
 
 export function Services() {
   return (
-    <section id="servicios" className="relative py-24 md:py-32">
-      <div className="mx-auto max-w-6xl px-6">
+    <section id="servicios" className="relative py-16 md:py-32">
+      <div className="mx-auto max-w-6xl px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -74,31 +74,22 @@ export function Services() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-2xl mx-auto"
         >
-          <span className="text-muce text-xs uppercase tracking-[0.28em]">
+          <span className="text-muce text-xs uppercase tracking-[0.2em] md:tracking-[0.28em]">
             Servicios
           </span>
-          <h2 className="mt-3 font-display font-bold text-4xl md:text-5xl tracking-tight">
+          <h2 className="mt-3 font-display font-bold text-3xl md:text-5xl tracking-tight">
             Tres formas de trabajar
             <span className="text-muce">.</span>
           </h2>
-          <p className="mt-4 text-text-muted">
+          <p className="mt-3 md:mt-4 text-sm md:text-base text-text-muted">
             Soluciones diseñadas para marcas que buscan contenido premium con
             intención. Elige por objetivo, no por catálogo.
           </p>
         </motion.div>
 
-        {/*
-          Mobile: scroll horizontal con snap (una card a la vez, la siguiente
-          asoma 15% del lado). Desktop: grid de 3 columnas como siempre.
-        */}
         <div
           className="
-            mt-14 flex md:grid md:grid-cols-3 gap-5 items-stretch
-            overflow-x-auto md:overflow-visible
-            snap-x snap-mandatory md:snap-none
-            -mx-6 md:mx-0 px-6 md:px-0
-            pb-4 md:pb-0
-            scrollbar-hide
+            mt-9 md:mt-14 grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch
           "
         >
           {services.map((s, i) => (
@@ -111,7 +102,7 @@ export function Services() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-8 text-center text-sm text-text-dim"
+          className="mt-4 md:mt-8 text-center text-sm text-text-dim"
         >
           ¿No estás seguro cuál es el tuyo?{" "}
           <a href="#agenda" className="text-muce hover:text-muce-bright underline-offset-4 hover:underline">
@@ -145,8 +136,8 @@ function ServiceCard({
         ease: [0.22, 1, 0.36, 1],
       }}
       whileHover={{ y: -6 }}
-      className={`group relative flex flex-col overflow-hidden rounded-2xl border bg-surface/40 backdrop-blur p-7 transition-colors
-        snap-center shrink-0 w-[85%] sm:w-[60%] md:w-auto ${
+      className={`group relative flex flex-col overflow-hidden rounded-xl md:rounded-2xl border bg-surface/40 backdrop-blur-sm md:backdrop-blur p-5 md:p-7 transition-colors
+        w-full ${
         highlight
           ? "border-muce/50 shadow-[0_0_0_1px_rgba(231,0,11,0.25)]"
           : "border-line hover:border-line-strong"
@@ -157,9 +148,9 @@ function ServiceCard({
       <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-[radial-gradient(80%_60%_at_50%_0%,rgba(231,0,11,0.12),transparent_70%)]" />
 
       {/* Badge slot — always present so cards align */}
-      <div className="relative h-6 mb-3">
+      <div className="relative h-5 md:h-6 mb-2 md:mb-3">
         {highlight && (
-          <span className="inline-flex rounded-full bg-muce/15 text-muce text-[0.65rem] uppercase tracking-[0.2em] px-2 py-1 border border-muce/30">
+          <span className="inline-flex rounded-full bg-muce/15 text-muce text-[0.6rem] md:text-[0.65rem] uppercase tracking-[0.16em] md:tracking-[0.2em] px-2 py-1 border border-muce/30">
             Más solicitado
           </span>
         )}
@@ -167,11 +158,11 @@ function ServiceCard({
 
       {/* Icon + name */}
       <div className="relative flex items-start gap-3">
-        <div className="size-11 rounded-xl bg-muce/15 border border-muce/30 flex items-center justify-center text-muce shrink-0">
+        <div className="size-10 md:size-11 rounded-xl bg-muce/15 border border-muce/30 flex items-center justify-center text-muce shrink-0">
           <Icon className="size-5" />
         </div>
         <div className="min-w-0">
-          <h3 className="font-display font-semibold text-xl tracking-tight">
+          <h3 className="font-display font-semibold text-lg md:text-xl tracking-tight">
             {name}
           </h3>
           <p className="text-sm">
@@ -184,14 +175,14 @@ function ServiceCard({
       </div>
 
       {/* Promise */}
-      <p className="relative mt-5 text-[0.95rem] leading-relaxed text-text">
+      <p className="relative mt-4 md:mt-5 text-sm md:text-[0.95rem] leading-relaxed text-text">
         {promise}
       </p>
 
       {/* Includes */}
-      <ul className="relative mt-5 space-y-2.5">
+      <ul className="relative mt-4 md:mt-5 space-y-2">
         {includes.map((item) => (
-          <li key={item} className="flex items-start gap-2.5 text-sm text-text-muted">
+          <li key={item} className="flex items-start gap-2.5 text-sm leading-snug text-text-muted">
             <Check className="size-4 text-muce shrink-0 mt-0.5" strokeWidth={2.5} />
             <span>{item}</span>
           </li>
@@ -199,14 +190,14 @@ function ServiceCard({
       </ul>
 
       {/* For whom — small footnote */}
-      <p className="relative mt-5 pt-5 border-t border-line text-xs leading-relaxed text-text-dim flex-1">
+      <p className="relative mt-4 md:mt-5 pt-4 md:pt-5 border-t border-line text-xs leading-relaxed text-text-dim flex-1">
         {forWhom}
       </p>
 
       {/* CTA */}
       <a
         href="#agenda"
-        className="relative mt-5 inline-flex items-center justify-between gap-2 rounded-lg border border-line hover:border-muce/50 hover:bg-muce/5 px-4 py-2.5 text-sm font-medium transition-all"
+        className="relative mt-4 md:mt-5 inline-flex min-h-12 items-center justify-between gap-2 rounded-lg border border-line hover:border-muce/50 hover:bg-muce/5 px-4 py-2.5 text-sm font-medium transition-all"
       >
         <span>Agendar reunión</span>
         <ArrowUpRight className="size-4 text-muce transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

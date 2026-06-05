@@ -14,9 +14,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Muce Studios — Contenido que se ve premium y se ejecuta con propósito",
-  description:
-    "Estudio de estrategia creativa y producción audiovisual. Traducimos objetivos de marca en piezas de alta calidad con intención, criterio y ejecución profesional.",
+  title: "Muce Studios | Estudio de Creación de Contenido",
+  description: "Estrategia, producción y ejecución audiovisual con criterio.",
+  icons: {
+    icon: "/assets/favicon-muce.png",
+    shortcut: "/assets/favicon-muce.png",
+    apple: "/assets/favicon-muce.png",
+  },
 };
 
 export default function RootLayout({

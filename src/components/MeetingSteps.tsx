@@ -26,12 +26,12 @@ export function MeetingSteps() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-20 md:py-24">
-      <div ref={ref} className="mx-auto max-w-6xl px-6">
-        <div className="rounded-2xl border border-line bg-surface/60 backdrop-blur p-8 md:p-10">
-          <div className="grid lg:grid-cols-4 gap-8 items-start">
+    <section className="relative py-16 md:py-24">
+      <div ref={ref} className="mx-auto max-w-6xl px-4 md:px-6">
+        <div className="rounded-xl md:rounded-2xl border border-line bg-surface/60 backdrop-blur-sm md:backdrop-blur p-5 md:p-10">
+          <div className="grid lg:grid-cols-4 gap-6 md:gap-8 items-start">
             <div>
-              <h3 className="font-display font-bold text-3xl tracking-tight">
+              <h3 className="font-display font-bold text-2xl md:text-3xl tracking-tight">
                 ¿Qué pasa<br />en la reunión<span className="text-muce">?</span>
               </h3>
               <p className="mt-3 text-sm text-text-muted">
@@ -51,7 +51,7 @@ export function MeetingSteps() {
                 }}
                 className="relative"
               >
-                <span className="font-display font-bold text-5xl text-muce leading-none">
+                <span className="font-display font-bold text-4xl md:text-5xl text-muce leading-none">
                   {s.n}
                 </span>
                 <h4 className="mt-3 font-display font-semibold text-lg">

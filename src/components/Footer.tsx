@@ -2,8 +2,8 @@ import { MuceLogo } from "./MuceLogo";
 
 export function Footer() {
   return (
-    <footer className="border-t border-line py-12">
-      <div className="mx-auto max-w-6xl px-6 grid md:grid-cols-3 gap-8 items-start">
+    <footer className="border-t border-line py-10 md:py-12">
+      <div className="mx-auto max-w-6xl px-4 md:px-6 grid md:grid-cols-3 gap-8 items-start">
         <div>
           <MuceLogo />
           <p className="mt-4 text-sm text-text-muted max-w-xs">
