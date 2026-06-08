@@ -11,7 +11,7 @@ type Props = {
 
 export function PremiumBanner({ primary, secondary, accent }: Props) {
   return (
-    <section className="mx-auto max-w-6xl px-4 md:px-6">
+    <section className="mx-auto w-full max-w-6xl px-4 md:px-6">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}

@@ -77,16 +77,16 @@ export function Schedule() {
           </div>
 
           {/* Decorative camera card */}
-          <div className="relative mt-8 hidden lg:block aspect-[16/10] rounded-2xl overflow-hidden border border-line bg-surface">
-            <div className="absolute inset-0 bg-gradient-to-br from-muce-deep/40 via-bg to-bg" />
+          <div className="relative mt-8 hidden lg:block aspect-[16/10] rounded-2xl overflow-hidden border border-line bg-[#111114]">
+            <div className="absolute inset-0 bg-gradient-to-br from-muce-deep/40 via-[#050507] to-[#050507]" />
             <div className="absolute inset-0 bg-noise opacity-60" />
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="size-24 rounded-full border border-line-strong bg-black/70 shadow-card relative">
-                <div className="absolute inset-4 rounded-full border border-line bg-black" />
+              <div className="size-24 rounded-full border border-white/15 bg-black/70 shadow-card relative">
+                <div className="absolute inset-4 rounded-full border border-white/10 bg-black" />
                 <div className="absolute top-3 left-5 size-2 rounded-full bg-white/30 blur-sm" />
               </div>
             </div>
-            <div className="absolute top-3 left-3 flex items-center gap-1.5 rounded bg-black/60 px-2 py-0.5 text-[0.6rem] tracking-[0.2em]">
+            <div className="absolute top-3 left-3 flex items-center gap-1.5 rounded bg-black/60 px-2 py-0.5 text-[0.6rem] tracking-[0.2em] text-white">
               <span className="size-1.5 rounded-full bg-muce rec-dot" />
               REC
             </div>
@@ -116,7 +116,7 @@ export function Schedule() {
                   placeholder="Ej. Juan Pérez"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full rounded-lg bg-bg/80 border border-line px-3 py-2.5 text-base md:text-sm placeholder:text-text-dim focus:border-muce focus:outline-none focus:ring-2 focus:ring-muce/30 transition"
+                  className="w-full rounded-lg bg-bg/80 border border-line px-3 py-2.5 text-base md:text-sm placeholder:text-black/50 focus:border-muce focus:outline-none focus:ring-2 focus:ring-muce/30 transition"
                 />
               </Field>
 
@@ -126,7 +126,7 @@ export function Schedule() {
                   placeholder="Ej. Muce Studios"
                   value={form.brand}
                   onChange={(e) => setForm({ ...form, brand: e.target.value })}
-                  className="w-full rounded-lg bg-bg/80 border border-line px-3 py-2.5 text-base md:text-sm placeholder:text-text-dim focus:border-muce focus:outline-none focus:ring-2 focus:ring-muce/30 transition"
+                  className="w-full rounded-lg bg-bg/80 border border-line px-3 py-2.5 text-base md:text-sm placeholder:text-black/50 focus:border-muce focus:outline-none focus:ring-2 focus:ring-muce/30 transition"
                 />
               </Field>
 
@@ -164,7 +164,7 @@ export function Schedule() {
                   placeholder="Cuéntanos brevemente qué buscas lograr con este proyecto."
                   value={form.context}
                   onChange={(e) => setForm({ ...form, context: e.target.value })}
-                  className="w-full rounded-lg bg-bg/80 border border-line px-3 py-2.5 text-base md:text-sm placeholder:text-text-dim focus:border-muce focus:outline-none focus:ring-2 focus:ring-muce/30 transition resize-none"
+                  className="w-full rounded-lg bg-bg/80 border border-line px-3 py-2.5 text-base md:text-sm placeholder:text-black/50 focus:border-muce focus:outline-none focus:ring-2 focus:ring-muce/30 transition resize-none"
                 />
               </Field>
 
@@ -239,7 +239,7 @@ export function Schedule() {
                         disabled
                           ? "border-line text-text-dim/50 cursor-not-allowed"
                           : isSelected
-                            ? "border-muce bg-muce/10 text-white"
+                            ? "border-muce bg-muce/10 text-muce"
                             : "border-line hover:border-line-strong text-text-muted hover:text-text"
                       }`}
                     >

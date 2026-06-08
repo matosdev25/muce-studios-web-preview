@@ -33,7 +33,7 @@ export default function RootLayout({
       lang="es"
       className={`${bricolage.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-bg text-text">
+      <body className="min-h-full w-full min-w-0 flex flex-col bg-white text-text">
         {children}
       </body>
     </html>

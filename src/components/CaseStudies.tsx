@@ -37,7 +37,7 @@ const cases: Case[] = [
 
 export function CaseStudies() {
   return (
-    <section id="casos" className="relative py-16 md:py-32">
+    <section id="casos" className="dark-section relative py-16 md:py-32">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -94,13 +94,12 @@ function CaseCard({
         ease: [0.22, 1, 0.36, 1],
       }}
       whileHover={{ y: -4 }}
-      className="group relative aspect-[4/5] rounded-xl md:rounded-2xl overflow-hidden border border-line bg-surface
-        w-full"
+      className="group relative aspect-[4/5] w-full overflow-hidden rounded-xl border border-line-strong bg-[#111114] shadow-card md:rounded-2xl"
     >
       {/* Animated background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-muce-deep/40 via-bg to-bg" />
+      <div className="absolute inset-0 bg-gradient-to-br from-muce-deep/40 via-[#050507] to-[#050507]" />
       <div className="absolute inset-0 bg-grid opacity-20 md:opacity-30" />
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(70%_50%_at_50%_50%,rgba(231,0,11,0.28),transparent_70%)]" />
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(70%_50%_at_50%_50%,rgba(219,25,25,0.28),transparent_70%)]" />
 
       {/* Icon as visual */}
       <motion.div
@@ -113,23 +112,23 @@ function CaseCard({
 
       {/* Top meta */}
       <div className="absolute top-4 md:top-5 inset-x-4 md:inset-x-5 flex items-center justify-between text-xs">
-        <span className="text-text-dim font-mono">Caso · {id}</span>
-        <span className="rounded-full border border-line bg-bg/60 backdrop-blur px-2 py-0.5 text-text-muted">
+        <span className="text-white/45 font-mono">Caso · {id}</span>
+        <span className="rounded-full border border-white/15 bg-black/40 backdrop-blur px-2 py-0.5 text-white/70">
           {category}
         </span>
       </div>
 
       {/* Bottom content */}
       <div className="absolute bottom-0 inset-x-0 p-4 md:p-5 bg-gradient-to-t from-black via-black/70 to-transparent">
-        <h3 className="font-display font-semibold text-xl md:text-2xl tracking-tight">
+        <h3 className="font-display font-semibold text-xl md:text-2xl tracking-tight text-white">
           {title}
         </h3>
-        <p className="mt-2 text-sm text-text-muted leading-relaxed">
+        <p className="mt-2 text-sm text-white/68 leading-relaxed">
           {outcome}
         </p>
 
-        <div className="mt-4 pt-4 border-t border-line flex items-center justify-between">
-          <span className="text-xs text-text-dim uppercase tracking-wider">
+        <div className="mt-4 pt-4 border-t border-white/15 flex items-center justify-between">
+          <span className="text-xs text-white/45 uppercase tracking-wider">
             Ver detalle
           </span>
           <ArrowUpRight className="size-4 text-muce transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

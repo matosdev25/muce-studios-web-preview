@@ -50,7 +50,7 @@ export function Hero() {
 
       <motion.div
         style={{ y, opacity }}
-        className="relative mx-auto max-w-6xl px-4 md:px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center"
+        className="relative mx-auto w-full max-w-6xl px-4 md:px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center"
       >
         {/* Text column */}
         <div className="min-w-0">
@@ -138,31 +138,31 @@ export function Hero() {
             className="absolute -inset-3 md:-inset-6 rounded-[2rem] bg-gradient-to-br from-muce/25 md:from-muce/40 via-muce-deep/15 md:via-muce-deep/20 to-transparent blur-2xl md:blur-3xl glow-drift"
           />
 
-          <div className="relative h-full rounded-xl md:rounded-2xl overflow-hidden border border-line-strong bg-surface float-soft">
+          <div className="relative h-full rounded-xl md:rounded-2xl overflow-hidden border border-white/15 bg-[#111114] float-soft">
             {/* "Recording" surface */}
-            <div className="absolute inset-0 bg-gradient-to-br from-muce-deep/30 via-bg-soft to-black" />
-            <div className="absolute inset-0 bg-grid opacity-20" />
+            <div className="absolute inset-0 bg-gradient-to-br from-muce-deep/30 via-[#0a0a0d] to-black" />
+            <div className="absolute inset-0 bg-grid opacity-10" />
 
             {/* Camera lens illustration */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="relative">
-                <div className="size-32 sm:size-40 md:size-56 rounded-full border border-line-strong bg-gradient-to-br from-black to-bg-soft shadow-card" />
-                <div className="absolute inset-4 rounded-full border border-line-strong bg-gradient-to-br from-bg-soft to-black" />
+                <div className="size-32 sm:size-40 md:size-56 rounded-full border border-white/15 bg-gradient-to-br from-black to-[#0a0a0d] shadow-card" />
+                <div className="absolute inset-4 rounded-full border border-white/15 bg-gradient-to-br from-[#0a0a0d] to-black" />
                 <div className="absolute inset-10 rounded-full bg-black" />
                 <div className="absolute top-6 left-10 size-3 rounded-full bg-white/40 blur-[2px]" />
                 {/* Second lens */}
-                <div className="absolute -bottom-3 -right-3 size-16 sm:size-20 md:-bottom-4 md:-right-4 md:size-24 rounded-full border border-line bg-gradient-to-br from-bg-soft to-black/70" />
+                <div className="absolute -bottom-3 -right-3 size-16 sm:size-20 md:-bottom-4 md:-right-4 md:size-24 rounded-full border border-white/10 bg-gradient-to-br from-[#0a0a0d] to-black/70" />
               </div>
             </div>
 
             {/* REC badge */}
-            <div className="absolute top-4 left-4 flex items-center gap-2 rounded-md bg-black/60 backdrop-blur px-2 py-1 text-[0.65rem] tracking-[0.2em] font-medium">
+            <div className="absolute top-4 left-4 flex items-center gap-2 rounded-md bg-black/60 backdrop-blur px-2 py-1 text-[0.65rem] tracking-[0.2em] font-medium text-white">
               <span className="size-1.5 rounded-full bg-muce rec-dot" />
               REC
             </div>
 
             {/* Timecode */}
-            <div className="absolute top-4 right-4 rounded-md bg-black/60 backdrop-blur px-2 py-1 text-[0.65rem] font-mono text-text-muted">
+            <div className="absolute top-4 right-4 rounded-md bg-black/60 backdrop-blur px-2 py-1 text-[0.65rem] font-mono text-white/60">
               00:00:30:00
             </div>
 
@@ -182,8 +182,8 @@ export function Hero() {
 
             {/* Bottom meta strip */}
             <div className="absolute bottom-0 inset-x-0 px-4 py-3 flex items-center justify-between bg-gradient-to-t from-black/80 to-transparent">
-              <span className="text-xs text-text-muted">Reel · 2026</span>
-              <span className="text-xs text-text-dim font-mono">
+              <span className="text-xs text-white/60">Reel · 2026</span>
+              <span className="text-xs text-white/45 font-mono">
                 4K · 24fps
               </span>
             </div>

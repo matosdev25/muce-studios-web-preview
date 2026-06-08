@@ -28,7 +28,7 @@ const items = [
 
 export function Credibility() {
   return (
-    <section className="relative py-14 md:py-20">
+    <section className="dark-section relative py-14 md:py-20">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
           {items.map((it, i) => (

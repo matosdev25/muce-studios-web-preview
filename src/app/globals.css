@@ -1,32 +1,33 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #050507;
-  --color-bg-soft: #0a0a0d;
-  --color-surface: #111114;
-  --color-surface-2: #18181d;
-  --color-line: rgba(255, 255, 255, 0.08);
-  --color-line-strong: rgba(255, 255, 255, 0.16);
-  --color-text: #f4f4f5;
-  --color-text-muted: #a1a1aa;
-  --color-text-dim: #71717a;
-  --color-muce: #e7000b;
-  --color-muce-bright: #ff1a1a;
-  --color-muce-deep: #b80009;
+  --color-bg: #ffffff;
+  --color-bg-soft: #f7f7f7;
+  --color-surface: #ffffff;
+  --color-surface-2: #f1f1f1;
+  --color-line: rgba(20, 20, 20, 0.14);
+  --color-line-strong: rgba(20, 20, 20, 0.24);
+  --color-text: #141414;
+  --color-text-muted: rgba(20, 20, 20, 0.72);
+  --color-text-dim: rgba(20, 20, 20, 0.62);
+  --color-muce: #db1919;
+  --color-muce-bright: #f02a2a;
+  --color-muce-deep: #b81616;
 
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
 
-  --shadow-glow: 0 0 60px -10px rgba(231, 0, 11, 0.45);
-  --shadow-card: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 18px 48px -20px rgba(219, 25, 25, 0.55);
+  --shadow-card: 0 24px 70px -34px rgba(20, 20, 20, 0.28);
 }
 
 html {
+  background: #ffffff;
   scroll-behavior: smooth;
 }
 
 body {
-  background: var(--color-bg);
+  background: #ffffff;
   color: var(--color-text);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -34,23 +35,39 @@ body {
   overflow-x: clip;
 }
 
+.dark-section {
+  background: #ffffff;
+  overflow: hidden;
+}
+
+main > .dark-section {
+  width: 100%;
+  max-width: 100%;
+}
+
+footer.dark-section {
+  width: 100%;
+  max-width: 100%;
+}
+
 /* Grid texture used as global background pattern */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(rgba(20, 20, 20, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 20, 20, 0.035) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
 .bg-noise {
-  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.08 0 0 0 0 0.08 0 0 0 0.035 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
 /* Radial spotlight used on hero / accent areas */
 .bg-spot {
   background:
-    radial-gradient(60% 50% at 50% 0%, rgba(231, 0, 11, 0.18), transparent 70%),
-    radial-gradient(80% 60% at 10% 100%, rgba(231, 0, 11, 0.08), transparent 70%);
+    radial-gradient(60% 50% at 50% 0%, rgba(219, 25, 25, 0.1), transparent 70%),
+    radial-gradient(80% 60% at 10% 100%, rgba(219, 25, 25, 0.05), transparent 70%),
+    #ffffff;
 }
 
 /* Shimmer used in premium banner */
@@ -133,12 +150,12 @@ body {
 
 /* Custom scrollbar (dark) */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-track { background: #ffffff; }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-surface-2);
+  background: #d8d8d8;
   border-radius: 999px;
 }
-::-webkit-scrollbar-thumb:hover { background: #2a2a31; }
+::-webkit-scrollbar-thumb:hover { background: #bcbcbc; }
 
 /* Selection */
 ::selection { background: var(--color-muce); color: white; }

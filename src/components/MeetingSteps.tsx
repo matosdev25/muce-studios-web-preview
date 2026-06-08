@@ -26,7 +26,7 @@ export function MeetingSteps() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-16 md:py-24">
+    <section className="dark-section relative py-16 md:py-24">
       <div ref={ref} className="mx-auto max-w-6xl px-4 md:px-6">
         <div className="rounded-xl md:rounded-2xl border border-line bg-surface/60 backdrop-blur-sm md:backdrop-blur p-5 md:p-10">
           <div className="grid lg:grid-cols-4 gap-6 md:gap-8 items-start">

@@ -65,7 +65,7 @@ const services: Service[] = [
 
 export function Services() {
   return (
-    <section id="servicios" className="relative py-16 md:py-32">
+    <section id="servicios" className="dark-section relative py-16 md:py-32">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
