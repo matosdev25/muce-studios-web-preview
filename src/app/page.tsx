@@ -5,14 +5,13 @@ import { Credibility } from "@/components/Credibility";
 import { Services } from "@/components/Services";
 import { CaseStudies } from "@/components/CaseStudies";
 import { Schedule } from "@/components/Schedule";
-import { MeetingSteps } from "@/components/MeetingSteps";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="flex-1 w-full min-w-0 overflow-x-clip bg-white">
+      <main className="page-red-ambient flex-1 w-full min-w-0 overflow-x-clip bg-white">
         <Hero />
 
         <PremiumBanner
@@ -27,8 +26,6 @@ export default function Home() {
         <CaseStudies />
 
         <Schedule />
-
-        <MeetingSteps />
       </main>
       <Footer />
     </>

@@ -136,11 +136,11 @@ function ServiceCard({
         ease: [0.22, 1, 0.36, 1],
       }}
       whileHover={{ y: -6 }}
-      className={`group relative flex flex-col overflow-hidden rounded-xl md:rounded-2xl border bg-surface/40 backdrop-blur-sm md:backdrop-blur p-5 md:p-7 transition-colors
+      className={`group relative flex flex-col overflow-hidden rounded-xl md:rounded-2xl border-[1.5px] bg-[#F7F7F5] p-5 md:p-7 shadow-[0_18px_45px_rgba(0,0,0,0.06)] transition-colors
         w-full ${
         highlight
-          ? "border-muce/50 shadow-[0_0_0_1px_rgba(231,0,11,0.25)]"
-          : "border-line hover:border-line-strong"
+          ? "border-muce/35"
+          : "border-black/15 hover:border-black/25"
       }`}
     >
       {/* Hover glow */}

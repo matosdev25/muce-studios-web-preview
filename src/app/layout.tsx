@@ -17,9 +17,18 @@ export const metadata: Metadata = {
   title: "Muce Studios | Estudio de Creación de Contenido",
   description: "Estrategia, producción y ejecución audiovisual con criterio.",
   icons: {
-    icon: "/assets/favicon-muce.png",
-    shortcut: "/assets/favicon-muce.png",
-    apple: "/assets/favicon-muce.png",
+    icon: [
+      {
+        url: "/assets/favicon-muce-light.png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/assets/favicon-muce-dark.png",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+    shortcut: "/assets/favicon-muce-light.png",
+    apple: "/assets/favicon-muce-light.png",
   },
 };
 
