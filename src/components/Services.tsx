@@ -8,6 +8,7 @@ import {
   ArrowUpRight,
   Check,
 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 type Service = {
   icon: React.ComponentType<{ className?: string }>;
@@ -125,10 +126,22 @@ function ServiceCard({
   highlight,
   index,
 }: Service & { index: number }) {
+  const [isDesktop, setIsDesktop] = useState(false);
+  const raised = Boolean(highlight && isDesktop);
+
+  useEffect(() => {
+    const query = window.matchMedia("(min-width: 768px)");
+    const update = () => setIsDesktop(query.matches);
+
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: raised ? 22 : 30 }}
+      whileInView={{ opacity: 1, y: raised ? -8 : 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{
         duration: 0.7,
@@ -136,22 +149,28 @@ function ServiceCard({
         ease: [0.22, 1, 0.36, 1],
       }}
       whileHover={{ y: -6 }}
-      className={`group relative flex flex-col overflow-hidden rounded-xl md:rounded-2xl border-[1.5px] bg-[#F7F7F5] p-5 md:p-7 shadow-[0_18px_45px_rgba(0,0,0,0.06)] transition-colors
+      className={`group relative flex flex-col overflow-hidden rounded-xl md:rounded-2xl border-[1.5px] p-5 md:p-7 transition-colors
         w-full ${
         highlight
-          ? "border-muce/35"
-          : "border-black/15 hover:border-black/25"
+          ? "border-muce/45 bg-[#FFF8F7] shadow-[0_24px_62px_rgba(0,0,0,0.11),0_0_0_1px_rgba(219,25,25,0.12),0_0_42px_rgba(219,25,25,0.12)]"
+          : "border-black/15 bg-[#F7F7F5] shadow-[0_18px_45px_rgba(0,0,0,0.06)] hover:border-black/25"
       }`}
     >
       {/* Hover glow */}
       <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-muce/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-[radial-gradient(80%_60%_at_50%_0%,rgba(231,0,11,0.12),transparent_70%)]" />
+      {highlight && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(80%_44%_at_50%_0%,rgba(219,25,25,0.12),transparent_72%)]"
+        />
+      )}
 
       {/* Badge slot — always present so cards align */}
-      <div className="relative h-5 md:h-6 mb-2 md:mb-3">
+      <div className="relative flex h-6 justify-end mb-2 md:mb-3">
         {highlight && (
-          <span className="inline-flex rounded-full bg-muce/15 text-muce text-[0.6rem] md:text-[0.65rem] uppercase tracking-[0.16em] md:tracking-[0.2em] px-2 py-1 border border-muce/30">
-            Más solicitado
+          <span className="inline-flex items-center rounded-full bg-muce px-3 py-1 text-xs font-bold uppercase tracking-[0.08em] text-white shadow-[0_10px_24px_rgba(219,25,25,0.22)]">
+            Más recomendado
           </span>
         )}
       </div>
