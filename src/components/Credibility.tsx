@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Compass, Clapperboard, Sparkles, Target } from "lucide-react";
 
+// Pilares de confianza que explican el criterio de Muce antes de mostrar servicios.
 const items = [
   {
     icon: Compass,

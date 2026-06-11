@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import {
+  type LucideIcon,
   Camera,
   Megaphone,
   CalendarDays,
@@ -11,7 +12,7 @@ import {
 import { useEffect, useState } from "react";
 
 type Service = {
-  icon: React.ComponentType<{ className?: string }>;
+  icon: LucideIcon;
   name: string;
   price: string;
   priceNote?: string;
@@ -21,6 +22,7 @@ type Service = {
   highlight?: boolean;
 };
 
+// Oferta comercial aprobada: cambiar nombres, precios o inclusiones afecta copy y posicionamiento.
 const services: Service[] = [
   {
     icon: Camera,
@@ -130,6 +132,7 @@ function ServiceCard({
   const raised = Boolean(highlight && isDesktop);
 
   useEffect(() => {
+    // La tarjeta destacada solo se eleva en desktop para no romper el flujo vertical en mobile.
     const query = window.matchMedia("(min-width: 768px)");
     const update = () => setIsDesktop(query.matches);
 
@@ -156,7 +159,7 @@ function ServiceCard({
           : "border-black/15 bg-[#F7F7F5] shadow-[0_18px_45px_rgba(0,0,0,0.06)] hover:border-black/25"
       }`}
     >
-      {/* Hover glow */}
+      {/* Brillos de hover y destacado: parte del sistema premium de Muce. */}
       <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-muce/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-[radial-gradient(80%_60%_at_50%_0%,rgba(231,0,11,0.12),transparent_70%)]" />
       {highlight && (
@@ -166,7 +169,7 @@ function ServiceCard({
         />
       )}
 
-      {/* Badge slot — always present so cards align */}
+      {/* Espacio reservado para que las tres tarjetas conserven la misma alineacion. */}
       <div className="relative flex h-6 justify-end mb-2 md:mb-3">
         {highlight && (
           <span className="inline-flex items-center rounded-full bg-muce px-3 py-1 text-xs font-bold uppercase tracking-[0.08em] text-white shadow-[0_10px_24px_rgba(219,25,25,0.22)]">
@@ -175,7 +178,6 @@ function ServiceCard({
         )}
       </div>
 
-      {/* Icon + name */}
       <div className="relative flex items-start gap-3">
         <div className="size-10 md:size-11 rounded-xl bg-muce/15 border border-muce/30 flex items-center justify-center text-muce shrink-0">
           <Icon className="size-5" />
@@ -193,12 +195,11 @@ function ServiceCard({
         </div>
       </div>
 
-      {/* Promise */}
       <p className="relative mt-4 md:mt-5 text-sm md:text-[0.95rem] leading-relaxed text-text">
         {promise}
       </p>
 
-      {/* Includes */}
+      {/* Lista de entregables visibles para comparar servicios sin abrir otra ruta. */}
       <ul className="relative mt-4 md:mt-5 space-y-2">
         {includes.map((item) => (
           <li key={item} className="flex items-start gap-2.5 text-sm leading-snug text-text-muted">
@@ -208,12 +209,12 @@ function ServiceCard({
         ))}
       </ul>
 
-      {/* For whom — small footnote */}
+      {/* Nota de fit: orienta al usuario sin cambiar la promesa comercial. */}
       <p className="relative mt-4 md:mt-5 pt-4 md:pt-5 border-t border-line text-xs leading-relaxed text-text-dim flex-1">
         {forWhom}
       </p>
 
-      {/* CTA */}
+      {/* CTA compartido con agenda; mantener el hash para no romper el flujo de conversion. */}
       <a
         href="#agenda"
         className="relative mt-4 md:mt-5 inline-flex min-h-12 items-center justify-between gap-2 rounded-lg border border-line hover:border-muce/50 hover:bg-muce/5 px-4 py-2.5 text-sm font-medium transition-all"

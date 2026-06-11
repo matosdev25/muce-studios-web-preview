@@ -6,6 +6,8 @@ import { MuceLogo } from "./MuceLogo";
 
 export function Navbar() {
   const { scrollY } = useScroll();
+
+  // La barra se vuelve mas solida al hacer scroll para conservar legibilidad sobre fondos claros.
   const bg = useTransform(
     scrollY,
     [0, 80],
@@ -28,6 +30,7 @@ export function Navbar() {
           <MuceLogo />
         </a>
 
+        {/* Anclas aprobadas de la landing; mantener sincronizadas con los ids de seccion. */}
         <nav className="hidden md:flex items-center gap-8 text-sm text-text-muted">
           <a href="#servicios" className="hover:text-text transition-colors">
             Servicios

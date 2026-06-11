@@ -19,6 +19,7 @@ export function PremiumBanner({ primary, secondary, accent }: Props) {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="relative overflow-hidden rounded-xl md:rounded-2xl border border-muce/40"
       >
+        {/* Banda roja de marca: conservar gradiente, shimmer y mark como firma visual. */}
         <div className="absolute inset-0 bg-gradient-to-r from-muce-deep via-muce to-muce-deep" />
         <div className="absolute inset-0 bg-[radial-gradient(120%_120%_at_100%_50%,rgba(255,255,255,0.25),transparent_60%)]" />
         <div className="absolute inset-0 shimmer-sweep" />

@@ -26,6 +26,7 @@ export function CalInlineEmbed() {
   useEffect(() => {
     let cancelled = false;
 
+    // Cal usa una cola global; esta funcion crea el stub antes de que cargue el script externo.
     const ensureCalQueue = () => {
       if (window.Cal) return;
 
@@ -56,6 +57,7 @@ export function CalInlineEmbed() {
       window.Cal = cal;
     };
 
+    // Inicializacion del calendario aprobado para campañas de marketing.
     const initializeCal = () => {
       if (cancelled || initializedRef.current || !window.Cal) return;
 
@@ -72,6 +74,7 @@ export function CalInlineEmbed() {
       namespacedCal("inline", {
         elementOrSelector: `#${CAL_ELEMENT_ID}`,
         config: {
+          // Mantener month_view para que el iframe encaje con las alturas CSS actuales.
           layout: "month_view",
           useSlotsViewOnSmallScreen: "true",
           theme: "light",
@@ -87,6 +90,7 @@ export function CalInlineEmbed() {
 
     ensureCalQueue();
 
+    // Se reutiliza el script si ya fue insertado por otra instancia del embed.
     const existingScript = document.getElementById(CAL_SCRIPT_ID) as HTMLScriptElement | null;
 
     if (!existingScript) {

@@ -2,21 +2,44 @@
 
 import { motion } from "framer-motion";
 import { CalendarCheck, Clock, ArrowRight, Check } from "lucide-react";
-import { useState } from "react";
+import { type ReactNode, useState } from "react";
 import { CalInlineEmbed } from "@/components/CalInlineEmbed";
 
 const CAL_EMBED_ID = "my-cal-inline-campanas-de-marketing";
 
+const initialFormData = {
+  name: "",
+  brand: "",
+  service: "",
+  budget: "",
+  context: "",
+};
+
+const serviceOptions = [
+  { value: "studio", label: "Studio Pack" },
+  { value: "campaign", label: "Campaña de Marketing" },
+  { value: "monthly", label: "Contenido Mensual" },
+  { value: "other", label: "No estoy seguro" },
+];
+
+const budgetOptions = [
+  { value: "<500", label: "Menos de $500" },
+  { value: "500-1500", label: "$500 – $1,500" },
+  { value: "1500-5000", label: "$1,500 – $5,000" },
+  { value: ">5000", label: "Más de $5,000" },
+];
+
+const meetingSteps = [
+  "Entender tu marca, objetivo y contexto.",
+  "Identificar cuál de nuestros servicios encaja con tu necesidad.",
+  "Proponerte el siguiente paso concreto, sin compromisos",
+];
+
 export function Schedule() {
-  const [formData, setFormData] = useState({
-    name: "",
-    brand: "",
-    service: "",
-    budget: "",
-    context: "",
-  });
+  const [formData, setFormData] = useState(initialFormData);
   const [calendarUnlocked, setCalendarUnlocked] = useState(false);
 
+  // Validacion simple: el calendario solo se habilita cuando todos los campos tienen valor.
   const isFormComplete = Boolean(
     formData.name.trim() &&
       formData.brand.trim() &&
@@ -24,6 +47,17 @@ export function Schedule() {
       formData.budget &&
       formData.context.trim(),
   );
+
+  const updateField = (field: keyof typeof initialFormData, value: string) => {
+    setFormData((current) => ({ ...current, [field]: value }));
+  };
+
+  const unlockCalendar = () => {
+    if (!isFormComplete) return;
+
+    setCalendarUnlocked(true);
+    document.getElementById(CAL_EMBED_ID)?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
 
   return (
     <section id="agenda" className="relative py-16 md:py-32 overflow-hidden">
@@ -71,13 +105,14 @@ export function Schedule() {
           <div className="schedule-form-card">
             <StepHeader number={1} title="Cuéntanos sobre tu marca" active done={isFormComplete} />
 
+            {/* Formulario de pre-calificacion: no envia datos, solo protege la agenda antes de Calendly/Cal. */}
             <form className="mt-5 space-y-4" onSubmit={(event) => event.preventDefault()}>
               <Field label="Nombre completo">
                 <input
                   type="text"
                   placeholder="Ej. Juan Pérez"
                   value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  onChange={(e) => updateField("name", e.target.value)}
                   className="w-full rounded-lg bg-bg/80 border border-line px-3 py-2.5 text-base md:text-sm placeholder:text-black/50 focus:border-muce focus:outline-none focus:ring-2 focus:ring-muce/30 transition"
                 />
               </Field>
@@ -87,7 +122,7 @@ export function Schedule() {
                   type="text"
                   placeholder="Ej. Muce Studios"
                   value={formData.brand}
-                  onChange={(e) => setFormData({ ...formData, brand: e.target.value })}
+                  onChange={(e) => updateField("brand", e.target.value)}
                   className="w-full rounded-lg bg-bg/80 border border-line px-3 py-2.5 text-base md:text-sm placeholder:text-black/50 focus:border-muce focus:outline-none focus:ring-2 focus:ring-muce/30 transition"
                 />
               </Field>
@@ -95,28 +130,30 @@ export function Schedule() {
               <Field label="Servicio de interés">
                 <select
                   value={formData.service}
-                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                  onChange={(e) => updateField("service", e.target.value)}
                   className="w-full rounded-lg bg-bg/80 border border-line px-3 py-2.5 text-base md:text-sm focus:border-muce focus:outline-none focus:ring-2 focus:ring-muce/30 transition"
                 >
                   <option value="">Selecciona una opción</option>
-                  <option value="studio">Studio Pack</option>
-                  <option value="campaign">Campaña de Marketing</option>
-                  <option value="monthly">Contenido Mensual</option>
-                  <option value="other">No estoy seguro</option>
+                  {serviceOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
                 </select>
               </Field>
 
               <Field label="Presupuesto aproximado">
                 <select
                   value={formData.budget}
-                  onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                  onChange={(e) => updateField("budget", e.target.value)}
                   className="w-full rounded-lg bg-bg/80 border border-line px-3 py-2.5 text-base md:text-sm focus:border-muce focus:outline-none focus:ring-2 focus:ring-muce/30 transition"
                 >
                   <option value="">Selecciona una opción</option>
-                  <option value="<500">Menos de $500</option>
-                  <option value="500-1500">$500 – $1,500</option>
-                  <option value="1500-5000">$1,500 – $5,000</option>
-                  <option value=">5000">Más de $5,000</option>
+                  {budgetOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
                 </select>
               </Field>
 
@@ -125,7 +162,7 @@ export function Schedule() {
                   rows={3}
                   placeholder="Cuéntanos brevemente qué buscas lograr con este proyecto."
                   value={formData.context}
-                  onChange={(e) => setFormData({ ...formData, context: e.target.value })}
+                  onChange={(e) => updateField("context", e.target.value)}
                   className="w-full rounded-lg bg-bg/80 border border-line px-3 py-2.5 text-base md:text-sm placeholder:text-black/50 focus:border-muce focus:outline-none focus:ring-2 focus:ring-muce/30 transition resize-none"
                 />
               </Field>
@@ -134,12 +171,7 @@ export function Schedule() {
                 <button
                   type="button"
                   disabled={!isFormComplete}
-                  onClick={() => {
-                    if (!isFormComplete) return;
-
-                    setCalendarUnlocked(true);
-                    document.getElementById(CAL_EMBED_ID)?.scrollIntoView({ behavior: "smooth", block: "center" });
-                  }}
+                  onClick={unlockCalendar}
                   className="w-full inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-muce hover:bg-muce-bright disabled:bg-surface-2 disabled:text-text-dim disabled:cursor-not-allowed text-white font-medium py-3 transition-colors shadow-glow disabled:shadow-none"
                 >
                   Continuar
@@ -156,6 +188,7 @@ export function Schedule() {
               <StepHeader number={2} title="Elige fecha y horario" active done={false} />
             </div>
 
+            {/* El embed se monta siempre para precargar Cal; el overlay bloquea interaccion hasta validar. */}
             <div className="calendar-shell">
               <div className={`calendar-wrapper ${!calendarUnlocked ? "is-locked" : ""}`}>
                 <div className="calendar-embed-layer">
@@ -189,11 +222,7 @@ export function Schedule() {
           </div>
 
           <div className="schedule-meeting-steps">
-            {[
-              "Entender tu marca, objetivo y contexto.",
-              "Identificar cuál de nuestros servicios encaja con tu necesidad.",
-              "Proponerte el siguiente paso concreto, sin compromisos",
-            ].map((step, index) => (
+            {meetingSteps.map((step, index) => (
               <div key={step} className="schedule-meeting-step">
                 <span>{index + 1}</span>
                 <p>{step}</p>
@@ -240,7 +269,7 @@ function Field({
   children,
 }: {
   label: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <label className="block">

@@ -4,24 +4,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { Play, Clock, CalendarCheck } from "lucide-react";
 import { useRef } from "react";
 
-// Titular Muce. Saca la tesis del ecosistema ("convertir visión en algo tangible")
-// y la condensa en una promesa corta. La palabra final va en rojo.
-//
-// Alternativas listas si quieres probar otra dirección — sustituye headline por la que prefieras:
-//
-//   const headline = [
-//     { text: "Contenido", accent: false },
-//     { text: "con", accent: false },
-//     { text: "criterio", accent: true },
-//     { text: ".", accent: true },
-//   ];
-//
-//   const headline = [
-//     { text: "Contenido", accent: false },
-//     { text: "que", accent: false },
-//     { text: "mueve", accent: true },
-//     { text: "marcas.", accent: false },
-//   ];
+// Titular aprobado de marca: mantener palabras, saltos y acento rojo alineados con diseño.
 const headline = [
   { text: "Convertimos", accent: false },
   { text: "visión", accent: false },
@@ -32,6 +15,8 @@ const headline = [
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
+
+  // Parallax suave del hero; se desactiva visualmente para usuarios con reduced motion.
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -52,7 +37,7 @@ export function Hero() {
         style={{ y, opacity }}
         className="relative mx-auto w-full max-w-6xl px-4 md:px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center"
       >
-        {/* Text column */}
+        {/* Columna editorial: copy, CTA principal y prueba de baja friccion. */}
         <div className="min-w-0">
           <motion.span
             initial={{ opacity: 0, y: 8 }}
@@ -125,25 +110,25 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Video card column */}
+        {/* Tarjeta visual de reel: actua como pieza de identidad aunque no reproduzca video real. */}
         <motion.div
           initial={{ opacity: 0, scale: 0.92, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="relative aspect-[16/10] md:aspect-[5/4]"
         >
-          {/* Drifting red glow behind card */}
+          {/* Halo rojo de marca; no cambiar sin validar identidad visual. */}
           <div
             aria-hidden
             className="absolute -inset-3 md:-inset-6 rounded-[2rem] bg-gradient-to-br from-muce/25 md:from-muce/40 via-muce-deep/15 md:via-muce-deep/20 to-transparent blur-2xl md:blur-3xl glow-drift"
           />
 
           <div className="relative h-full rounded-xl md:rounded-2xl overflow-hidden border border-white/15 bg-[#111114] float-soft">
-            {/* "Recording" surface */}
+            {/* Superficie de grabacion simulada para sostener el lenguaje audiovisual. */}
             <div className="absolute inset-0 bg-gradient-to-br from-muce-deep/30 via-[#0a0a0d] to-black" />
             <div className="absolute inset-0 bg-grid opacity-10" />
 
-            {/* Camera lens illustration */}
+            {/* Ilustracion CSS del lente: evita depender de assets externos en el primer viewport. */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="relative">
                 <div className="size-32 sm:size-40 md:size-56 rounded-full border border-white/15 bg-gradient-to-br from-black to-[#0a0a0d] shadow-card" />
@@ -155,18 +140,17 @@ export function Hero() {
               </div>
             </div>
 
-            {/* REC badge */}
+            {/* Detalles REC/timecode refuerzan la categoria audiovisual de Muce. */}
             <div className="absolute top-4 left-4 flex items-center gap-2 rounded-md bg-black/60 backdrop-blur px-2 py-1 text-[0.65rem] tracking-[0.2em] font-medium text-white">
               <span className="size-1.5 rounded-full bg-muce rec-dot" />
               REC
             </div>
 
-            {/* Timecode */}
             <div className="absolute top-4 right-4 rounded-md bg-black/60 backdrop-blur px-2 py-1 text-[0.65rem] font-mono text-white/60">
               00:00:30:00
             </div>
 
-            {/* Play button overlay */}
+            {/* Overlay de play reservado para el reel aprobado; no enlaza nada por ahora. */}
             <button
               aria-label="Reproducir reel"
               className="group absolute inset-0 flex items-center justify-center"
@@ -180,7 +164,7 @@ export function Hero() {
               </span>
             </button>
 
-            {/* Bottom meta strip */}
+            {/* Franja tecnica decorativa: mantener tono premium sin prometer un archivo descargable. */}
             <div className="absolute bottom-0 inset-x-0 px-4 py-3 flex items-center justify-between bg-gradient-to-t from-black/80 to-transparent">
               <span className="text-xs text-white/60">Reel · 2026</span>
               <span className="text-xs text-white/45 font-mono">

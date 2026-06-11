@@ -12,6 +12,7 @@ export default function Home() {
     <>
       <Navbar />
       <main className="page-red-ambient flex-1 w-full min-w-0 overflow-x-clip bg-white">
+        {/* Orden aprobado de la landing: no mover secciones sin revisar narrativa y anclas. */}
         <Hero />
 
         <PremiumBanner

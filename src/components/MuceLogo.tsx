@@ -5,6 +5,7 @@ type Props = {
 export function MuceLogo({ className = "" }: Props) {
   return (
     <div className={`inline-flex items-center gap-1.5 ${className}`}>
+      {/* Wordmark aprobado; brackets rojos y tracking sostienen reconocimiento de marca. */}
       <span
         aria-hidden
         className="text-muce font-display font-bold text-2xl leading-none"
@@ -31,6 +32,7 @@ export function MuceLogo({ className = "" }: Props) {
 
 export function MuceMark({ className = "" }: Props) {
   return (
+    // Mark geometrico usado en piezas de marca; mantener proporciones del viewBox.
     <svg
       viewBox="0 0 40 40"
       className={className}

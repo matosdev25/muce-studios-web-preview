@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  /* Tokens base de Muce Studios: modificar colores/tipografias requiere revision de marca. */
   --color-bg: #ffffff;
   --color-bg-soft: #f7f7f7;
   --color-surface: #ffffff;
@@ -35,6 +36,7 @@ body {
   overflow-x: clip;
 }
 
+/* Secciones oscuras/logicas de ancho completo; el fondo visible se controla desde cada bloque. */
 .dark-section {
   background: transparent;
   overflow: hidden;
@@ -45,11 +47,7 @@ main > .dark-section {
   max-width: 100%;
 }
 
-footer.dark-section {
-  width: 100%;
-  max-width: 100%;
-}
-
+/* Ambiente rojo global de la landing; queda detras de todas las secciones del main. */
 .page-red-ambient {
   position: relative;
   isolation: isolate;
@@ -78,7 +76,7 @@ footer {
   z-index: 1;
 }
 
-/* Grid texture used as global background pattern */
+/* Textura de grid usada en hero, cards y calendario para coherencia audiovisual. */
 .bg-grid {
   background-image:
     linear-gradient(rgba(20, 20, 20, 0.035) 1px, transparent 1px),
@@ -86,11 +84,12 @@ footer {
   background-size: 48px 48px;
 }
 
+/* Ruido sutil del hero; importante para que el fondo no se vea plano en pantallas grandes. */
 .bg-noise {
   background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.08 0 0 0 0 0.08 0 0 0 0.035 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
-/* Radial spotlight used on hero / accent areas */
+/* Spotlight radial de acento para hero y zonas de marca. */
 .bg-spot {
   background:
     radial-gradient(60% 50% at 50% 0%, rgba(219, 25, 25, 0.1), transparent 70%),
@@ -98,7 +97,7 @@ footer {
     #ffffff;
 }
 
-/* Shimmer used in premium banner */
+/* Shimmer del banner premium. */
 @keyframes shimmer {
   0% { transform: translateX(-120%) skewX(-12deg); }
   100% { transform: translateX(220%) skewX(-12deg); }
@@ -118,21 +117,21 @@ footer {
   pointer-events: none;
 }
 
-/* Pulse dot used on REC badge */
+/* Pulso del indicador REC. */
 @keyframes recPulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.5; transform: scale(1.25); }
 }
 .rec-dot { animation: recPulse 1.4s ease-in-out infinite; }
 
-/* Soft floating motion for hero video card */
+/* Flotacion suave de la tarjeta visual del hero. */
 @keyframes floatY {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
 .float-soft { animation: floatY 6s ease-in-out infinite; }
 
-/* Slow drift for spotlight glow behind hero video */
+/* Drift lento del halo rojo del hero. */
 @keyframes drift {
   0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.55; }
   50% { transform: translate(20px, -10px) scale(1.05); opacity: 0.75; }
@@ -154,6 +153,7 @@ footer {
   overflow: hidden;
 }
 
+/* Layout de agenda: estas medidas mantienen alineados formulario, bloqueo y embed de Cal. */
 .schedule-layout {
   display: grid;
   grid-template-columns: 420px minmax(0, 1fr);
@@ -220,6 +220,7 @@ footer {
   flex-shrink: 0;
 }
 
+/* Tarjeta inferior que resume la reunion sin depender del componente antiguo MeetingSteps. */
 .schedule-meeting-card {
   display: grid;
   grid-template-columns: minmax(220px, 0.85fr) minmax(0, 2fr);
@@ -267,6 +268,7 @@ footer {
   background: #fff;
 }
 
+/* El iframe se escala para que month_view quepa dentro del card aprobado. */
 .calendar-embed-layer {
   width: 100%;
   height: 100%;
@@ -288,6 +290,7 @@ footer {
   transform: scale(1.01);
 }
 
+/* Overlay de bloqueo: evita interacciones con Cal hasta completar el formulario. */
 .calendar-lock-overlay {
   position: absolute;
   inset: 0;
@@ -316,6 +319,7 @@ footer {
 }
 
 @media (max-width: 768px) {
+  /* En mobile las tarjetas pasan a una sola columna y el calendario conserva altura tactil. */
   .schedule-layout,
   .schedule-meeting-card,
   .schedule-meeting-steps {
@@ -375,6 +379,7 @@ footer {
 
   .float-soft,
   .glow-drift {
+    /* Las animaciones decorativas se apagan en mobile para reducir ruido y costo visual. */
     animation: none;
   }
 
@@ -398,13 +403,7 @@ footer {
   }
 }
 
-/* Underline / accent dot used after period in headlines */
-.dot::after {
-  content: ".";
-  color: var(--color-muce);
-}
-
-/* Custom scrollbar (dark) */
+/* Scrollbar personalizado claro. */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: #ffffff; }
 ::-webkit-scrollbar-thumb {
@@ -413,15 +412,5 @@ footer {
 }
 ::-webkit-scrollbar-thumb:hover { background: #bcbcbc; }
 
-/* Selection */
+/* Color de seleccion alineado con Muce. */
 ::selection { background: var(--color-muce); color: white; }
-
-/* Hide scrollbar on horizontal carousels (mobile cards) — Tailwind v4 @utility */
-@utility scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
